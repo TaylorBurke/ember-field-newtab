@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="emberJade" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff5a1f"/>
+      <stop offset="17%" stop-color="#ff9a2e"/>
+      <stop offset="33%" stop-color="#f4c430"/>
+      <stop offset="50%" stop-color="#b5d93c"/>
+      <stop offset="67%" stop-color="#6fcf52"/>
+      <stop offset="83%" stop-color="#2fb88a"/>
+      <stop offset="100%" stop-color="#1e8a6e"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#14100c"/>
+  <circle cx="64" cy="64" r="46" fill="url(#emberJade)"/>
+  <circle cx="64" cy="64" r="46" fill="none" stroke="#14100c" stroke-width="2" opacity="0.25"/>
+</svg>

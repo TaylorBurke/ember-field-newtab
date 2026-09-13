@@ -4,6 +4,7 @@
   --ember: #ff8a3d;
   --jade: #3fcf9a;
   --muted: #8fa294;
+  --accent: var(--jade);
 }
 
 * {
@@ -53,7 +54,7 @@ canvas#field {
 }
 
 .search:focus-within {
-  box-shadow: 0 0 0 2px var(--jade), 0 12px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 2px var(--accent), 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
 .search-leaf {
@@ -215,6 +216,66 @@ canvas#field {
 .add-shortcut:focus-visible {
   background: rgba(63, 207, 154, 0.1);
   color: var(--jade);
+}
+
+.recent-tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recent-tabs-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.recent-tabs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: min(320px, 80vw);
+}
+
+.recent-tab-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid rgba(245, 234, 214, 0.1);
+  background: rgba(245, 234, 214, 0.05);
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.recent-tab-item:hover,
+.recent-tab-item:focus-visible {
+  background: rgba(245, 234, 214, 0.1);
+}
+
+.recent-tab-icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  background: rgba(245, 234, 214, 0.12);
+}
+
+.recent-tab-title {
+  flex: 1;
+  min-width: 0;
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.78rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .favorites-edit {
