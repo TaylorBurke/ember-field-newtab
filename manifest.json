@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Ember Field New Tab",
+  "version": "1.0",
+  "description": "Replaces the new tab page with an animated ember/jade Perlin noise field.",
+  "permissions": ["storage"],
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  }
+}

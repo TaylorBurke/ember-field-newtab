@@ -1,0 +1,324 @@
+:root {
+  --bg: #0a0d0a;
+  --ink: #f5ead6;
+  --ember: #ff8a3d;
+  --jade: #3fcf9a;
+  --muted: #8fa294;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+canvas#field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.ntp-center {
+  position: fixed;
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: min(560px, 88vw);
+  padding: 0.2rem 0.4rem 0.2rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 234, 214, 0.18);
+  background: rgba(10, 13, 10, 0.55);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  transition: box-shadow 0.15s ease;
+}
+
+.search:focus-within {
+  box-shadow: 0 0 0 2px var(--jade), 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.search-leaf {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--jade);
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--ink);
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  padding: 0.85rem 0;
+}
+
+.search-input::placeholder {
+  color: var(--muted);
+}
+
+.search-input::-webkit-search-cancel-button {
+  filter: invert(0.7);
+}
+
+.search-submit {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.search-submit svg {
+  width: 20px;
+  height: 20px;
+}
+
+.search-submit:hover,
+.search-submit:focus-visible {
+  color: var(--ember);
+  background: rgba(255, 138, 61, 0.12);
+}
+
+.search-input:focus-visible,
+.search-submit:focus-visible {
+  outline: none;
+}
+
+.shortcuts-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.1rem;
+}
+
+.shortcuts {
+  display: flex;
+  gap: 1.1rem;
+}
+
+.shortcut,
+.add-shortcut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  width: 64px;
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.shortcut-icon-box,
+.add-shortcut {
+  position: relative;
+}
+
+.shortcut-icon-box {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(245, 234, 214, 0.08);
+  border: 1px solid rgba(245, 234, 214, 0.14);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.shortcut:hover .shortcut-icon-box,
+.shortcut:focus-visible .shortcut-icon-box {
+  background: rgba(245, 234, 214, 0.14);
+  transform: translateY(-1px);
+}
+
+.shortcut-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.shortcut-label {
+  max-width: 64px;
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shortcut-remove {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 90, 31, 0.9);
+  color: #fff;
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.add-shortcut {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: rgba(245, 234, 214, 0.04);
+  border: 1px dashed rgba(245, 234, 214, 0.25);
+  color: var(--muted);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.add-shortcut svg {
+  width: 18px;
+  height: 18px;
+}
+
+.add-shortcut:hover,
+.add-shortcut:focus-visible {
+  background: rgba(63, 207, 154, 0.1);
+  color: var(--jade);
+}
+
+.favorites-edit {
+  position: fixed;
+  left: clamp(1.25rem, 4vw, 3rem);
+  bottom: 1.5rem;
+}
+
+.edit-link {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.6;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.edit-link:hover,
+.edit-link:focus-visible {
+  opacity: 1;
+  color: var(--jade);
+}
+
+.add-dialog {
+  border: none;
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: min(360px, 88vw);
+  background: #0f1310;
+  color: var(--ink);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.add-dialog::backdrop {
+  background: rgba(4, 5, 4, 0.6);
+  backdrop-filter: blur(2px);
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.add-form label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.add-form input {
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.95rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(245, 234, 214, 0.2);
+  background: rgba(245, 234, 214, 0.06);
+  color: var(--ink);
+  outline: none;
+}
+
+.add-form input:focus-visible {
+  border-color: var(--jade);
+}
+
+.add-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.btn-ghost,
+.btn-solid {
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-ghost {
+  background: none;
+  color: var(--muted);
+}
+
+.btn-ghost:hover {
+  color: var(--ink);
+}
+
+.btn-solid {
+  background: var(--jade);
+  color: #06120c;
+  font-weight: 600;
+}
+
+.btn-solid:hover {
+  filter: brightness(1.08);
+}
