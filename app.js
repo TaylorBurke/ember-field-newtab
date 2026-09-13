@@ -1,7 +1,13 @@
-PerlinCanvas.mount(document.getElementById('field'), {
-  hues: ['#ff5a1f', '#ff9a2e', '#f4c430', '#b5d93c', '#6fcf52', '#2fb88a', '#1e8a6e'],
-  cellSize: 11,
-  speed: 1,
-  density: 1,
-  hueGamma: 0.6
-});
+(async function () {
+  var data = await chrome.storage.local.get('palette');
+  var paletteId = data.palette || EMBER_FIELD_DEFAULT_PALETTE;
+  var palette = EMBER_FIELD_PALETTES[paletteId] || EMBER_FIELD_PALETTES[EMBER_FIELD_DEFAULT_PALETTE];
+
+  window.emberField = PerlinCanvas.mount(document.getElementById('field'), {
+    hues: palette.hues,
+    hueGamma: palette.hueGamma,
+    cellSize: 11,
+    speed: 1,
+    density: 1
+  });
+})();

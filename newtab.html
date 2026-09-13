@@ -35,6 +35,10 @@
   <button type="button" id="editFavoritesBtn" class="edit-link" hidden>Edit favorites</button>
 </div>
 
+<button type="button" id="paletteBtn" class="palette-btn" aria-label="Change color palette" title="Change color palette">
+  <span id="paletteBtnSwatch" class="palette-btn-swatch"></span>
+</button>
+
 <dialog class="add-dialog" id="addDialog">
   <form id="addForm" class="add-form">
     <label for="shortcutUrl">Add shortcut</label>
@@ -46,8 +50,15 @@
   </form>
 </dialog>
 
+<dialog class="add-dialog" id="paletteDialog">
+  <label class="palette-dialog-label">Color palette</label>
+  <div id="paletteList" class="palette-list"></div>
+</dialog>
+
 <script src="main.js"></script>
+<script src="palettes.js"></script>
 <script src="app.js"></script>
 <script src="shortcuts.js"></script>
+<script src="palette-picker.js"></script>
 </body>
 </html>
