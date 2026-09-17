@@ -1,6 +1,6 @@
 Privacy Policy for Ember Field New Tab
 
-Last updated: 2026-09-13
+Last updated: 2026-09-17
 
 ## What Data We Collect
 
@@ -37,9 +37,11 @@ to Google's servers or any other server. Uninstalling the extension removes it.
   extension requests that site's favicon from this service using only the hostname you
   typed in. This only happens for sites you explicitly add as a shortcut — it is never
   used for recently-closed tabs or any other site you merely visited.
-- **Ecosia** (ecosia.org): the search bar submits your search query directly to Ecosia via
-  a normal browser form submission, exactly as if you had typed the query into Ecosia's own
-  site. The extension does not see or store your query.
+- **Your own default search provider**: the search bar submits your query via Chrome's
+  built-in `chrome.search` API, which hands it to whichever search engine you've set as
+  default in Chrome's own settings (`chrome://settings/search`) — exactly as if you'd typed
+  it into the browser's address bar. The extension does not choose, override, or see the
+  provider; it does not see or store your query either.
 - **Google Fonts** (fonts.googleapis.com, fonts.gstatic.com): used to load the interface's
   monospace typeface. This is a standard web font request; no personal data is sent beyond
   what any font request over the web normally includes.

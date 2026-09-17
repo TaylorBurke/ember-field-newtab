@@ -1,7 +1,7 @@
 # Ember Field New Tab
 
 A Chrome extension that replaces the new tab page with a live, animated
-ember/jade Perlin-noise field — plus a minimal Ecosia search bar and up to
+ember/jade Perlin-noise field — plus a minimal search bar and up to
 five favicon shortcuts you manage yourself.
 
 Built on [perlin-canvas](https://github.com/TaylorBurke/perlin-canvas), the
@@ -12,9 +12,10 @@ here (`main.js`) so the extension is fully self-contained.
 
 - **Animated background.** The full generative field, running live and
   continuously — no fixed loop, no video file.
-- **Ecosia search.** A centered search bar that submits directly to
-  [ecosia.org](https://www.ecosia.org) — no JavaScript wiring, just a native
-  form `GET`.
+- **Search, your way.** A centered search bar that routes your query through
+  the [Chrome Search API](https://developer.chrome.com/docs/extensions/reference/api/search),
+  so it always goes to whichever default search provider you've picked in
+  Chrome's own settings — the extension never overrides that choice.
 - **Up to 5 shortcuts.** Click the `+` tile below the search bar, type a URL,
   and it's saved with its favicon (via DuckDuckGo's icon service) using
   `chrome.storage.local`. The `+` tile disappears once you hit five.
@@ -39,6 +40,7 @@ style.css        All styling
 main.js          Vendored copy of perlin-canvas's noise-field engine
 app.js           Mounts the field with this extension's palette/pacing
 shortcuts.js     Shortcut add/remove/render logic, backed by chrome.storage
+search.js        Submits the search bar via chrome.search, the user's default provider
 ```
 
 ## License
