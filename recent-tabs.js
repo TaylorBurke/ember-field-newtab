@@ -57,7 +57,10 @@
     if (!chrome.sessions) return;
 
     var sessions = await chrome.sessions.getRecentlyClosed({ maxResults: 25 });
-    var recentTabs = sessions.filter(function (s) { return !!s.tab; }).slice(0, MAX_RECENT);
+    // Chrome can return entries whose tab has no url/title populated (e.g. this
+    // extension only holds the "sessions" permission, not "tabs") — skip those
+    // rather than rendering a blank row for them.
+    var recentTabs = sessions.filter(function (s) { return !!(s.tab && s.tab.url); }).slice(0, MAX_RECENT);
     render(recentTabs);
   }
 
