@@ -13,10 +13,9 @@
 
 <div class="ntp-center">
   <form class="search" id="searchForm" autocomplete="off">
-    <svg class="search-leaf" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 2C7 2 3 6 3 11c0 6 5 10 9 11 4-1 9-5 9-11 0-5-4-9-9-9Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
-      <path d="M12 21V9M12 9c0-3 2-5 5-6M12 12c-2-1-5-1-6 1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-    </svg>
+    <button type="button" class="search-caret" id="searchCaretBtn" aria-label="Change search service" title="Change search service">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
     <input class="search-input" type="search" name="q" placeholder="Search" aria-label="Search" autofocus>
     <button class="search-submit" type="submit" aria-label="Search">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.2" y2="16.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -48,6 +47,7 @@
   <form id="addForm" class="add-form">
     <label for="shortcutUrl">Add shortcut</label>
     <input type="text" id="shortcutUrl" placeholder="example.com" autocomplete="off" required>
+    <p class="add-form-error" id="shortcutError" hidden>That doesn't look like a website address.</p>
     <div class="add-form-actions">
       <button type="button" id="cancelAdd" class="btn-ghost">Cancel</button>
       <button type="submit" class="btn-solid">Add</button>
@@ -60,11 +60,18 @@
   <div id="paletteList" class="palette-list"></div>
 </dialog>
 
+<dialog class="add-dialog" id="searchServiceDialog">
+  <label class="palette-dialog-label">Search service</label>
+  <p class="search-service-hint">Display only — search still goes through your browser's actual default search engine, set in Chrome's own settings.</p>
+  <div id="searchServiceList" class="palette-list"></div>
+</dialog>
+
 <script src="main.js"></script>
 <script src="palettes.js"></script>
 <script src="app.js"></script>
 <script src="shortcuts.js"></script>
 <script src="palette-picker.js"></script>
+<script src="search-picker.js"></script>
 <script src="recent-tabs.js"></script>
 <script src="search.js"></script>
 </body>

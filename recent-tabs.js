@@ -23,10 +23,18 @@
         icon = document.createElement('img');
         icon.src = tab.favIconUrl;
         icon.alt = '';
+        icon.className = 'recent-tab-icon';
       } else {
+        // Generic globe glyph — a blank tile here reads as a broken/missing image
+        // rather than an intentional "no favicon" state.
         icon = document.createElement('span');
+        icon.className = 'recent-tab-icon recent-tab-icon-fallback';
+        icon.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+          '<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/>' +
+          '<ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.6"/>' +
+          '<line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.6"/>' +
+          '</svg>';
       }
-      icon.className = 'recent-tab-icon';
 
       var title = document.createElement('span');
       title.className = 'recent-tab-title';

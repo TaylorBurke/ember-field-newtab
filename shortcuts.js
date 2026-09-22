@@ -8,19 +8,38 @@
   var dialog = document.getElementById('addDialog');
   var form = document.getElementById('addForm');
   var urlInput = document.getElementById('shortcutUrl');
+  var errorEl = document.getElementById('shortcutError');
   var cancelBtn = document.getElementById('cancelAdd');
 
   var editing = false;
+
+  // Deliberately loose: just enough to catch plain text ("not a url!!") before it
+  // becomes a broken, percent-encoded shortcut tile. Not a strict hostname validator —
+  // this is a personal shortcut list, not a security boundary, so it errs on the side
+  // of accepting borderline-but-plausible input.
+  var HOSTNAME_RE = /^[a-z0-9-]+(\.[a-z0-9-]+)+$/i;
 
   function normalizeUrl(raw) {
     var value = raw.trim();
     if (!value) return null;
     if (!/^https?:\/\//i.test(value)) value = 'https://' + value;
     try {
-      return new URL(value).href;
+      var url = new URL(value);
+      if (!HOSTNAME_RE.test(url.hostname)) return null;
+      return url.href;
     } catch (err) {
       return null;
     }
+  }
+
+  function showError() {
+    urlInput.classList.add('is-invalid');
+    errorEl.hidden = false;
+  }
+
+  function clearError() {
+    urlInput.classList.remove('is-invalid');
+    errorEl.hidden = true;
   }
 
   function hostnameOf(url) {
@@ -101,9 +120,12 @@
 
   addBtn.addEventListener('click', function () {
     urlInput.value = '';
+    clearError();
     dialog.showModal();
     urlInput.focus();
   });
+
+  urlInput.addEventListener('input', clearError);
 
   cancelBtn.addEventListener('click', function () {
     dialog.close();
@@ -116,7 +138,10 @@
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     var url = normalizeUrl(urlInput.value);
-    if (!url) return;
+    if (!url) {
+      showError();
+      return;
+    }
 
     var list = await loadShortcuts();
     if (list.length >= MAX_SHORTCUTS) {

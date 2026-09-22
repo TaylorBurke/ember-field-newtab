@@ -57,11 +57,28 @@ canvas#field {
   box-shadow: 0 0 0 2px var(--accent), 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
-.search-leaf {
+.search-caret {
   flex: none;
-  width: 20px;
-  height: 20px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.search-caret svg {
+  width: 14px;
+  height: 14px;
+}
+
+.search-caret:hover,
+.search-caret:focus-visible {
   color: var(--jade);
+  background: rgba(63, 207, 154, 0.12);
 }
 
 .search-input {
@@ -150,14 +167,15 @@ canvas#field {
   width: 52px;
   height: 52px;
   border-radius: 16px;
-  background: rgba(245, 234, 214, 0.08);
+  background: rgba(10, 13, 10, 0.55);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(245, 234, 214, 0.14);
   transition: background 0.15s ease, transform 0.15s ease;
 }
 
 .shortcut:hover .shortcut-icon-box,
 .shortcut:focus-visible .shortcut-icon-box {
-  background: rgba(245, 234, 214, 0.14);
+  background: rgba(10, 13, 10, 0.4);
   transform: translateY(-1px);
 }
 
@@ -201,7 +219,8 @@ canvas#field {
   border-radius: 16px;
   display: grid;
   place-items: center;
-  background: rgba(245, 234, 214, 0.04);
+  background: rgba(10, 13, 10, 0.55);
+  backdrop-filter: blur(10px);
   border: 1px dashed rgba(245, 234, 214, 0.25);
   color: var(--muted);
   transition: background 0.15s ease, color 0.15s ease;
@@ -248,7 +267,8 @@ canvas#field {
   padding: 0.45rem 0.7rem;
   border-radius: 10px;
   border: 1px solid rgba(245, 234, 214, 0.1);
-  background: rgba(245, 234, 214, 0.05);
+  background: rgba(10, 13, 10, 0.55);
+  backdrop-filter: blur(10px);
   color: var(--ink);
   text-decoration: none;
   cursor: pointer;
@@ -257,7 +277,7 @@ canvas#field {
 
 .recent-tab-item:hover,
 .recent-tab-item:focus-visible {
-  background: rgba(245, 234, 214, 0.1);
+  background: rgba(10, 13, 10, 0.4);
 }
 
 .recent-tab-icon {
@@ -266,6 +286,17 @@ canvas#field {
   height: 16px;
   border-radius: 3px;
   background: rgba(245, 234, 214, 0.12);
+}
+
+.recent-tab-icon-fallback {
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+
+.recent-tab-icon-fallback svg {
+  width: 12px;
+  height: 12px;
 }
 
 .recent-tab-title {
@@ -346,6 +377,16 @@ canvas#field {
 
 .add-form input:focus-visible {
   border-color: var(--jade);
+}
+
+.add-form input.is-invalid {
+  border-color: var(--ember);
+}
+
+.add-form-error {
+  margin: -0.35rem 0 0;
+  font-size: 0.78rem;
+  color: var(--ember);
 }
 
 .add-form-actions {
@@ -460,4 +501,24 @@ canvas#field {
   font-family: system-ui, "Segoe UI", Roboto, sans-serif;
   font-size: 0.85rem;
   color: var(--ink);
+}
+
+.search-service-swatch {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #06120c;
+}
+
+.search-service-hint {
+  margin: -0.5rem 0 0.9rem;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--muted);
 }
