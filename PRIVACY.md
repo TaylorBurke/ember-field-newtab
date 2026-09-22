@@ -1,6 +1,6 @@
 Privacy Policy for Ember Field New Tab
 
-Last updated: 2026-09-17
+Last updated: 2026-09-22
 
 ## What Data We Collect
 
@@ -12,13 +12,16 @@ The extension stores two things locally on your device, using the browser's buil
 - Your selected color palette (e.g. "Ember / Jade")
 - The shortcut tiles you add (a URL and label for each, up to five)
 
-The extension also reads your browser's recently-closed-tabs list (via `chrome.sessions`,
-a permission you grant at install) to show up to three of them on the new tab page, so you
-can quickly reopen one. This list is read live from your browser each time you open a new
-tab and is never stored, logged, or transmitted anywhere by the extension. The site icon
-shown for each recently-closed tab comes only from Chrome's own cached copy; if Chrome
-has no cached icon for a tab, no icon is shown — the extension never requests one from a
-third party for a site it didn't explicitly ask you about.
+The extension also reads your browser's recently-closed-tabs list (via `chrome.sessions`)
+to show up to three of them on the new tab page, so you can quickly reopen one. Showing
+each one's real title, address, and site icon requires Chrome's `tabs` permission — without
+it, Chrome withholds that information from every extension, sharing only an opaque session
+ID. This list is read live from your browser each time you open a new tab and is never
+stored, logged, or transmitted anywhere by the extension, and the `tabs` permission is used
+for nothing else — the extension does not read, log, or transmit the URLs or titles of your
+other open tabs. The site icon shown for each recently-closed tab comes only from Chrome's
+own cached copy; if Chrome has no cached icon for a tab, no icon is shown — the extension
+never requests one from a third party for a site it didn't explicitly ask you about.
 
 ## How Data Is Stored
 

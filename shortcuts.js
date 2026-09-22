@@ -126,7 +126,7 @@
     addBtn.hidden = list.length >= MAX_SHORTCUTS;
     editBtn.hidden = list.length === 0 && !editing;
     editBtn.textContent = editing ? 'Done' : 'Edit favorites';
-    namesToggle.hidden = list.length === 0 && !editing;
+    namesToggle.hidden = !editing;
     namesCheckbox.checked = showNames;
   }
 

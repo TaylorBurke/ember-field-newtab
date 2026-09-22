@@ -65,6 +65,7 @@ English
 |------------|------|---------------|
 | storage | permissions | Saves the user's selected color palette and up to five custom shortcut tiles locally on their device (`chrome.storage.local`), so these preferences persist between new tab sessions. No data leaves the device. |
 | sessions | permissions | Reads the browser's list of recently closed tabs (`chrome.sessions.getRecentlyClosed`) to show up to three of them on the new tab page, and reopens one when the user clicks it (`chrome.sessions.restore`). Nothing from this list is stored or transmitted by the extension. |
+| tabs | permissions | Required alongside `sessions` — without it, Chrome withholds each recently-closed tab's title, URL, and favicon from every extension (only an opaque session ID is shared). Used solely to display that information for the up-to-three recently-closed tabs shown on the new tab page; the extension does not read, log, or transmit data about the user's other open tabs. |
 | search | permissions | Submits the new tab page's search bar query via `chrome.search.query`, which Chrome routes to the user's own default search provider (set in `chrome://settings/search`). The extension does not read the result or pick the provider itself. |
 
 ## Privacy & Data Use
@@ -133,6 +134,7 @@ https://github.com/TaylorBurke/ember-field-newtab
 
 | Version | Date | Changes | Status |
 |---------|------|---------|--------|
+| 1.3.4 | 2026-09-22 | Fixed "Show site name" toggle showing outside Edit favorites mode. Added the `tabs` permission — the recently-closed-tabs panel has been unable to show real titles/URLs/favicons since it was introduced in 1.1 (Chrome withholds that data from `chrome.sessions` without `tabs`); this restores it for real. See PRIVACY.md and the Permissions Justification table for the updated disclosure. | Draft |
 | 1.3.3 | 2026-09-22 | Fixed low-contrast text in the Advanced search "Open in" dropdown; the search submit button's hover color now follows the selected palette (a real secondary accent, not hardcoded orange); added a "Show site name" toggle in Edit favorites for icon-only tiles. | Draft |
 | 1.3.2 | 2026-09-22 | Replaced the search caret's cosmetic service picker with a functional "Advanced search" panel (site/domain restrict, exact phrase, exclude terms, file type, open-in tab/window) that folds into the query sent via `chrome.search.query`. | Draft |
 | 1.3.1 | 2026-09-22 | Fixed: recently-closed rows with no valid tab URL (Chrome can return these without the `tabs` permission) no longer render a blank row; panel stays hidden if no valid entries remain. | Draft |
