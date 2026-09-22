@@ -58,6 +58,7 @@ canvas#field {
 }
 
 .search-caret {
+  position: relative;
   flex: none;
   display: grid;
   place-items: center;
@@ -68,6 +69,17 @@ canvas#field {
   background: transparent;
   color: var(--muted);
   cursor: pointer;
+}
+
+.search-caret.is-active::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 .search-caret svg {
@@ -366,7 +378,8 @@ canvas#field {
   color: var(--muted);
 }
 
-.add-form input {
+.add-form input,
+.add-form select {
   font-family: system-ui, "Segoe UI", Roboto, sans-serif;
   font-size: 0.95rem;
   padding: 0.6rem 0.75rem;
@@ -377,7 +390,8 @@ canvas#field {
   outline: none;
 }
 
-.add-form input:focus-visible {
+.add-form input:focus-visible,
+.add-form select:focus-visible {
   border-color: var(--accent);
 }
 
@@ -505,22 +519,3 @@ canvas#field {
   color: var(--ink);
 }
 
-.search-service-swatch {
-  flex: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #06120c;
-}
-
-.search-service-hint {
-  margin: -0.5rem 0 0.9rem;
-  font-size: 0.72rem;
-  line-height: 1.4;
-  color: var(--muted);
-}

@@ -13,7 +13,7 @@
 
 <div class="ntp-center">
   <form class="search" id="searchForm" autocomplete="off">
-    <button type="button" class="search-caret" id="searchCaretBtn" aria-label="Change search service" title="Change search service">
+    <button type="button" class="search-caret" id="searchCaretBtn" aria-label="Advanced search options" title="Advanced search options">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
     <input class="search-input" type="search" name="q" placeholder="Search" aria-label="Search" autofocus>
@@ -62,10 +62,28 @@
   <div id="paletteList" class="palette-list"></div>
 </dialog>
 
-<dialog class="add-dialog" id="searchServiceDialog">
-  <label class="palette-dialog-label">Search service</label>
-  <p class="search-service-hint">Display only — search still goes through your browser's actual default search engine, set in Chrome's own settings.</p>
-  <div id="searchServiceList" class="palette-list"></div>
+<dialog class="add-dialog" id="advancedSearchDialog">
+  <form id="advancedSearchForm" class="add-form">
+    <label class="palette-dialog-label">Advanced search</label>
+    <label for="advSite">Site or domain</label>
+    <input type="text" id="advSite" placeholder="example.com" autocomplete="off">
+    <label for="advExact">Exact phrase</label>
+    <input type="text" id="advExact" placeholder="like this" autocomplete="off">
+    <label for="advExclude">Exclude terms</label>
+    <input type="text" id="advExclude" placeholder="word1 word2" autocomplete="off">
+    <label for="advFiletype">File type</label>
+    <input type="text" id="advFiletype" placeholder="pdf" autocomplete="off">
+    <label for="advDisposition">Open in</label>
+    <select id="advDisposition">
+      <option value="CURRENT_TAB">Current tab</option>
+      <option value="NEW_TAB">New tab</option>
+      <option value="NEW_WINDOW">New window</option>
+    </select>
+    <div class="add-form-actions">
+      <button type="button" id="cancelAdvanced" class="btn-ghost">Cancel</button>
+      <button type="submit" class="btn-solid">Apply</button>
+    </div>
+  </form>
 </dialog>
 
 <script src="main.js"></script>
@@ -73,7 +91,7 @@
 <script src="app.js"></script>
 <script src="shortcuts.js"></script>
 <script src="palette-picker.js"></script>
-<script src="search-picker.js"></script>
+<script src="advanced-search.js"></script>
 <script src="recent-tabs.js"></script>
 <script src="search.js"></script>
 </body>
