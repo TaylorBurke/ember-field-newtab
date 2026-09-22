@@ -11,12 +11,15 @@ rm -f "$OUTPUT"
 
 zip -r "$OUTPUT" . \
   -x ".git/*" \
+  -x ".github/*" \
+  -x ".gitignore" \
   -x "store-assets/*" \
   -x "CHROMEWEBSTORE.md" \
   -x "PRIVACY.md" \
   -x "README.md" \
   -x "LICENSE" \
   -x "package-extension.sh" \
+  -x "*.zip" \
   -x ".DS_Store" \
   -x "Thumbs.db"
 

@@ -133,6 +133,7 @@ https://github.com/TaylorBurke/ember-field-newtab
 
 | Version | Date | Changes | Status |
 |---------|------|---------|--------|
+| 1.3 | 2026-09-22 | UI polish pass: "Add shortcut" now validates the URL instead of accepting plain text; shortcuts can be named (or left to auto-derive from hostname) and edited in place; recently-closed rows with no favicon show a globe glyph instead of a blank box; the favorites row, recent-tabs panel, and "Edit favorites" link now share the search bar's frosted-glass look; hover/accent colors follow the selected palette instead of always jade; the search bar's decorative icon is now a caret that opens a display-only search-service picker. | Draft |
 | 1.2.1 | 2026-09-22 | No functional change — version bump to smoke-test the new auto-publish GitHub Actions workflow (issue #1). | Draft |
 | 1.2 | 2026-09-17 | Rewired the search bar to submit via `chrome.search.query` (new `search` permission) instead of a hardcoded action to ecosia.org, to resolve the single-purpose rejection below. | Draft |
 | 1.1 | 2026-09-13 | Added "Recently closed tabs" panel (new `sessions` permission); search bar focus highlight now follows the selected palette's accent color; added store icons and screenshots. | Rejected |
