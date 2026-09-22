@@ -23,6 +23,7 @@ jobs:
       - name: Upload draft to Chrome Web Store
         env:
           EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
+          PUBLISHER_ID: ${{ secrets.PUBLISHER_ID }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
@@ -30,4 +31,5 @@ jobs:
           VERSION=$(node -p "require('./manifest.json').version")
           npx --yes chrome-webstore-upload-cli upload \
             --source "ember-field-newtab-v${VERSION}.zip" \
-            --extension-id "$EXTENSION_ID"
+            --extension-id "$EXTENSION_ID" \
+            --publisher-id "$PUBLISHER_ID"
