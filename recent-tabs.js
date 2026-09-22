@@ -13,7 +13,7 @@
       var item = document.createElement('button');
       item.type = 'button';
       item.className = 'recent-tab-item';
-      item.title = tab.title || tab.url;
+      item.title = tab.url;
 
       // Only use the favicon Chrome already has cached for this session — never fetch
       // one from a third party, since that would mean sending browsing history
@@ -44,7 +44,15 @@
       item.appendChild(title);
 
       item.addEventListener('click', async function () {
+        // chrome.sessions.restore() always reopens into a new tab — there's no
+        // way to ask it to reuse this one directly — so close this new-tab-page
+        // tab once the restore succeeds, leaving the restored tab in its place
+        // instead of a second tab sitting alongside it.
+        var currentTab = await chrome.tabs.getCurrent();
         await chrome.sessions.restore(tab.sessionId);
+        if (currentTab) {
+          await chrome.tabs.remove(currentTab.id);
+        }
       });
 
       list.appendChild(item);

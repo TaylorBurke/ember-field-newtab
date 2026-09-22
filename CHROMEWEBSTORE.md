@@ -134,6 +134,7 @@ https://github.com/TaylorBurke/ember-field-newtab
 
 | Version | Date | Changes | Status |
 |---------|------|---------|--------|
+| 1.3.5 | 2026-09-22 | Clicking a recently-closed tab now replaces the new-tab-page tab instead of opening a second tab alongside it; hovering a recently-closed row now always shows the full URL in the tooltip (previously the page title when available). | Draft |
 | 1.3.4 | 2026-09-22 | Fixed "Show site name" toggle showing outside Edit favorites mode. Added the `tabs` permission — the recently-closed-tabs panel has been unable to show real titles/URLs/favicons since it was introduced in 1.1 (Chrome withholds that data from `chrome.sessions` without `tabs`); this restores it for real. See PRIVACY.md and the Permissions Justification table for the updated disclosure. | Draft |
 | 1.3.3 | 2026-09-22 | Fixed low-contrast text in the Advanced search "Open in" dropdown; the search submit button's hover color now follows the selected palette (a real secondary accent, not hardcoded orange); added a "Show site name" toggle in Edit favorites for icon-only tiles. | Draft |
 | 1.3.2 | 2026-09-22 | Replaced the search caret's cosmetic service picker with a functional "Advanced search" panel (site/domain restrict, exact phrase, exclude terms, file type, open-in tab/window) that folds into the query sent via `chrome.search.query`. | Draft |
