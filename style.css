@@ -77,8 +77,8 @@ canvas#field {
 
 .search-caret:hover,
 .search-caret:focus-visible {
-  color: var(--jade);
-  background: rgba(63, 207, 154, 0.12);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .search-input {
@@ -233,8 +233,8 @@ canvas#field {
 
 .add-shortcut:hover,
 .add-shortcut:focus-visible {
-  background: rgba(63, 207, 154, 0.1);
-  color: var(--jade);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--accent);
 }
 
 .recent-tabs {
@@ -316,23 +316,25 @@ canvas#field {
 }
 
 .edit-link {
-  border: none;
-  background: none;
-  padding: 0;
+  border: 1px solid rgba(245, 234, 214, 0.14);
+  background: rgba(10, 13, 10, 0.55);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 0.4rem 0.7rem;
   cursor: pointer;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
-  opacity: 0.6;
+  opacity: 0.85;
   transition: opacity 0.15s ease, color 0.15s ease;
 }
 
 .edit-link:hover,
 .edit-link:focus-visible {
   opacity: 1;
-  color: var(--jade);
+  color: var(--accent);
 }
 
 .add-dialog {
@@ -376,7 +378,7 @@ canvas#field {
 }
 
 .add-form input:focus-visible {
-  border-color: var(--jade);
+  border-color: var(--accent);
 }
 
 .add-form input.is-invalid {
@@ -416,7 +418,7 @@ canvas#field {
 }
 
 .btn-solid {
-  background: var(--jade);
+  background: var(--accent);
   color: #06120c;
   font-weight: 600;
 }
@@ -487,7 +489,7 @@ canvas#field {
 }
 
 .palette-option.is-active {
-  border-color: var(--jade);
+  border-color: var(--accent);
 }
 
 .palette-preview {
