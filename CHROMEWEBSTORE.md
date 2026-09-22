@@ -133,6 +133,7 @@ https://github.com/TaylorBurke/ember-field-newtab
 
 | Version | Date | Changes | Status |
 |---------|------|---------|--------|
+| 1.2.1 | 2026-09-22 | No functional change — version bump to smoke-test the new auto-publish GitHub Actions workflow (issue #1). | Draft |
 | 1.2 | 2026-09-17 | Rewired the search bar to submit via `chrome.search.query` (new `search` permission) instead of a hardcoded action to ecosia.org, to resolve the single-purpose rejection below. | Draft |
 | 1.1 | 2026-09-13 | Added "Recently closed tabs" panel (new `sessions` permission); search bar focus highlight now follows the selected palette's accent color; added store icons and screenshots. | Rejected |
 | 1.0 | 2026-09-12 | Initial version: animated field background, Ecosia search, up to 5 shortcuts, 6 color palettes. | Draft (never submitted) |
