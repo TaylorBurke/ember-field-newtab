@@ -8,10 +8,16 @@
   var dialog = document.getElementById('addDialog');
   var form = document.getElementById('addForm');
   var urlInput = document.getElementById('shortcutUrl');
+  var nameInput = document.getElementById('shortcutName');
+  var titleEl = document.getElementById('addFormTitle');
+  var submitBtn = document.getElementById('addSubmitBtn');
   var errorEl = document.getElementById('shortcutError');
   var cancelBtn = document.getElementById('cancelAdd');
 
   var editing = false;
+  // URL of the shortcut currently being edited via the dialog, or null when
+  // the dialog is in "add a new shortcut" mode.
+  var editingUrl = null;
 
   // Deliberately loose: just enough to catch plain text ("not a url!!") before it
   // becomes a broken, percent-encoded shortcut tile. Not a strict hostname validator —
@@ -95,7 +101,10 @@
           await refresh();
         });
         iconBox.appendChild(remove);
-        tile.addEventListener('click', function (e) { e.preventDefault(); });
+        tile.addEventListener('click', function (e) {
+          e.preventDefault();
+          openEditDialog(shortcut);
+        });
       }
 
       var label = document.createElement('span');
@@ -118,8 +127,27 @@
     render(list);
   }
 
+  function openEditDialog(shortcut) {
+    editingUrl = shortcut.url;
+    urlInput.value = shortcut.url;
+    // Only pre-fill Name when it holds an actual custom name — if it just
+    // matches the auto-derived hostname, leave it blank so "leave it blank"
+    // keeps meaning "auto-derive" even after re-saving.
+    var defaultLabel = hostnameOf(shortcut.url);
+    nameInput.value = shortcut.label !== defaultLabel ? shortcut.label : '';
+    titleEl.textContent = 'Edit shortcut';
+    submitBtn.textContent = 'Save';
+    clearError();
+    dialog.showModal();
+    urlInput.focus();
+  }
+
   addBtn.addEventListener('click', function () {
+    editingUrl = null;
     urlInput.value = '';
+    nameInput.value = '';
+    titleEl.textContent = 'Add shortcut';
+    submitBtn.textContent = 'Add';
     clearError();
     dialog.showModal();
     urlInput.focus();
@@ -144,19 +172,36 @@
     }
 
     var list = await loadShortcuts();
-    if (list.length >= MAX_SHORTCUTS) {
-      dialog.close();
-      return;
-    }
-
     var hostname = hostnameOf(url);
-    if (list.some(function (s) { return hostnameOf(s.url) === hostname; })) {
+    var customName = nameInput.value.trim();
+    var label = customName || hostname;
+    var entry = { url: url, label: label, icon: faviconUrl(hostname) };
+
+    var duplicate = list.some(function (s) {
+      return hostnameOf(s.url) === hostname && s.url !== editingUrl;
+    });
+    if (duplicate) {
       dialog.close();
       return;
     }
 
-    list.push({ url: url, label: hostname, icon: faviconUrl(hostname) });
+    if (editingUrl) {
+      var idx = list.findIndex(function (s) { return s.url === editingUrl; });
+      if (idx === -1) {
+        dialog.close();
+        return;
+      }
+      list[idx] = entry;
+    } else {
+      if (list.length >= MAX_SHORTCUTS) {
+        dialog.close();
+        return;
+      }
+      list.push(entry);
+    }
+
     await saveShortcuts(list);
+    editingUrl = null;
     dialog.close();
     await refresh();
   });

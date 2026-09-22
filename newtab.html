@@ -45,12 +45,14 @@
 
 <dialog class="add-dialog" id="addDialog">
   <form id="addForm" class="add-form">
-    <label for="shortcutUrl">Add shortcut</label>
+    <label for="shortcutUrl" id="addFormTitle">Add shortcut</label>
     <input type="text" id="shortcutUrl" placeholder="example.com" autocomplete="off" required>
     <p class="add-form-error" id="shortcutError" hidden>That doesn't look like a website address.</p>
+    <label for="shortcutName">Name (optional)</label>
+    <input type="text" id="shortcutName" placeholder="Uses the site name if left blank" autocomplete="off">
     <div class="add-form-actions">
       <button type="button" id="cancelAdd" class="btn-ghost">Cancel</button>
-      <button type="submit" class="btn-solid">Add</button>
+      <button type="submit" class="btn-solid" id="addSubmitBtn">Add</button>
     </div>
   </form>
 </dialog>
