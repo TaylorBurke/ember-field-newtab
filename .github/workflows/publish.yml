@@ -1,0 +1,33 @@
+name: Publish to Chrome Web Store
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Package extension
+        run: ./package-extension.sh
+
+      # Uploads the new package as a draft in the Chrome Web Store dashboard.
+      # Deliberately does NOT run the `publish` subcommand — a human clicks
+      # "Publish" in the dashboard after reviewing the draft.
+      - name: Upload draft to Chrome Web Store
+        env:
+          EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./manifest.json').version")
+          npx --yes chrome-webstore-upload-cli upload \
+            --source "ember-field-newtab-v${VERSION}.zip" \
+            --extension-id "$EXTENSION_ID"

@@ -97,6 +97,25 @@ https://github.com/TaylorBurke/ember-field-newtab/blob/master/PRIVACY.md
 **Visibility**: Public
 **Regions**: All regions
 
+## Publishing Automation
+
+`.github/workflows/publish.yml` runs `package-extension.sh` and uploads the resulting
+zip to the Chrome Web Store as a **draft** on every push to `main` (it never calls the
+`publish` subcommand — a human still clicks "Publish" in the dashboard after reviewing
+the draft).
+
+**One-time manual setup still needed before this workflow will succeed** (tracked in
+[issue #1](https://github.com/TaylorBurke/ember-field-newtab/issues/1)):
+- [x] First listing already live on the Chrome Web Store (the API can only update an
+      existing listing, not create the first one)
+- [ ] Create a Google Cloud project + OAuth 2.0 client ID (Desktop app type)
+- [ ] Get a refresh token for that client via the Chrome Web Store API scope
+- [ ] Set these as GitHub Actions repo secrets: `EXTENSION_ID`, `CLIENT_ID`,
+      `CLIENT_SECRET`, `REFRESH_TOKEN`
+
+Until those secrets exist, the workflow will run and fail at the upload step — that's
+expected, not a bug in the workflow itself.
+
 ## Developer Info
 
 **Publisher Name**
