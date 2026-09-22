@@ -35,6 +35,7 @@
           window.emberField.setOptions({ hues: palette.hues, hueGamma: palette.hueGamma });
         }
         document.documentElement.style.setProperty('--accent', palette.accent);
+        document.documentElement.style.setProperty('--accent-secondary', palette.hues[0]);
         swatch.style.background = gradientFor(palette.hues);
         dialog.close();
       });

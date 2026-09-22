@@ -4,6 +4,7 @@
   var palette = EMBER_FIELD_PALETTES[paletteId] || EMBER_FIELD_PALETTES[EMBER_FIELD_DEFAULT_PALETTE];
 
   document.documentElement.style.setProperty('--accent', palette.accent);
+  document.documentElement.style.setProperty('--accent-secondary', palette.hues[0]);
 
   window.emberField = PerlinCanvas.mount(document.getElementById('field'), {
     hues: palette.hues,

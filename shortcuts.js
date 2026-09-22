@@ -1,10 +1,13 @@
 (function () {
   var STORAGE_KEY = 'shortcuts';
+  var NAMES_KEY = 'showFavoriteNames';
   var MAX_SHORTCUTS = 5;
 
   var shortcutsEl = document.getElementById('shortcuts');
   var addBtn = document.getElementById('addShortcutBtn');
   var editBtn = document.getElementById('editFavoritesBtn');
+  var namesToggle = document.getElementById('showNamesToggle');
+  var namesCheckbox = document.getElementById('showNamesCheckbox');
   var dialog = document.getElementById('addDialog');
   var form = document.getElementById('addForm');
   var urlInput = document.getElementById('shortcutUrl');
@@ -18,6 +21,7 @@
   // URL of the shortcut currently being edited via the dialog, or null when
   // the dialog is in "add a new shortcut" mode.
   var editingUrl = null;
+  var showNames = true;
 
   // Deliberately loose: just enough to catch plain text ("not a url!!") before it
   // becomes a broken, percent-encoded shortcut tile. Not a strict hostname validator —
@@ -107,22 +111,29 @@
         });
       }
 
-      var label = document.createElement('span');
-      label.className = 'shortcut-label';
-      label.textContent = shortcut.label;
-
       tile.appendChild(iconBox);
-      tile.appendChild(label);
+
+      if (showNames) {
+        var label = document.createElement('span');
+        label.className = 'shortcut-label';
+        label.textContent = shortcut.label;
+        tile.appendChild(label);
+      }
+
       shortcutsEl.appendChild(tile);
     });
 
     addBtn.hidden = list.length >= MAX_SHORTCUTS;
     editBtn.hidden = list.length === 0 && !editing;
     editBtn.textContent = editing ? 'Done' : 'Edit favorites';
+    namesToggle.hidden = list.length === 0 && !editing;
+    namesCheckbox.checked = showNames;
   }
 
   async function refresh() {
-    var list = await loadShortcuts();
+    var data = await chrome.storage.local.get([STORAGE_KEY, NAMES_KEY]);
+    var list = data[STORAGE_KEY] || [];
+    showNames = data[NAMES_KEY] !== false;
     if (list.length === 0) editing = false;
     render(list);
   }
@@ -208,6 +219,13 @@
 
   editBtn.addEventListener('click', async function () {
     editing = !editing;
+    var list = await loadShortcuts();
+    render(list);
+  });
+
+  namesCheckbox.addEventListener('change', async function () {
+    showNames = namesCheckbox.checked;
+    await chrome.storage.local.set({ [NAMES_KEY]: showNames });
     var list = await loadShortcuts();
     render(list);
   });

@@ -133,6 +133,7 @@ https://github.com/TaylorBurke/ember-field-newtab
 
 | Version | Date | Changes | Status |
 |---------|------|---------|--------|
+| 1.3.3 | 2026-09-22 | Fixed low-contrast text in the Advanced search "Open in" dropdown; the search submit button's hover color now follows the selected palette (a real secondary accent, not hardcoded orange); added a "Show site name" toggle in Edit favorites for icon-only tiles. | Draft |
 | 1.3.2 | 2026-09-22 | Replaced the search caret's cosmetic service picker with a functional "Advanced search" panel (site/domain restrict, exact phrase, exclude terms, file type, open-in tab/window) that folds into the query sent via `chrome.search.query`. | Draft |
 | 1.3.1 | 2026-09-22 | Fixed: recently-closed rows with no valid tab URL (Chrome can return these without the `tabs` permission) no longer render a blank row; panel stays hidden if no valid entries remain. | Draft |
 | 1.3 | 2026-09-22 | UI polish pass: "Add shortcut" now validates the URL instead of accepting plain text; shortcuts can be named (or left to auto-derive from hostname) and edited in place; recently-closed rows with no favicon show a globe glyph instead of a blank box; the favorites row, recent-tabs panel, and "Edit favorites" link now share the search bar's frosted-glass look; hover/accent colors follow the selected palette instead of always jade; the search bar's decorative icon is now a caret that opens a display-only search-service picker. | Draft |
