@@ -108,13 +108,12 @@ the draft).
 [issue #1](https://github.com/TaylorBurke/ember-field-newtab/issues/1)):
 - [x] First listing already live on the Chrome Web Store (the API can only update an
       existing listing, not create the first one)
-- [ ] Create a Google Cloud project + OAuth 2.0 client ID (Desktop app type)
-- [ ] Get a refresh token for that client via the Chrome Web Store API scope
-- [ ] Set these as GitHub Actions repo secrets: `EXTENSION_ID`, `CLIENT_ID`,
-      `CLIENT_SECRET`, `REFRESH_TOKEN`
+- [x] Google Cloud OAuth 2.0 client ID (Desktop app type)
+- [x] Refresh token generated via the Chrome Web Store API scope
+- [x] Repo secrets set: `EXTENSION_ID`, `CLIENT_ID`, `CLIENT_SECRET`, `REFRESH_TOKEN`
 
-Until those secrets exist, the workflow will run and fail at the upload step — that's
-expected, not a bug in the workflow itself.
+All one-time setup is complete as of 2026-09-22. The workflow is ready to run on the
+next push to `main`.
 
 ## Developer Info
 
